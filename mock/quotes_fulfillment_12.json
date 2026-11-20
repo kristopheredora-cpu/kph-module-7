@@ -1,0 +1,4 @@
+[
+  { "QuoteID": 9, "FulfillmentID": 12, "CourierID": 1, "QuotedFee": "150.00", "EstimatedDeliveryDays": 3, "QuotedAt": "2026-10-30 09:22:00", "IsSelected": 0 },
+  { "QuoteID": 10, "FulfillmentID": 12, "CourierID": 2, "QuotedFee": "200.00", "EstimatedDeliveryDays": 1, "QuotedAt": "2026-10-30 09:22:00", "IsSelected": 1 }
+]

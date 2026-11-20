@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fulfillment | KameraPH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/kph.css">
+  <link rel="stylesheet" href="css/module.css">
+  <!-- keeps the light/dark choice without a flash -->
+  <script>try{var t=localStorage.getItem("kph-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<!-- ===== KAMERAPH HEADER (copy as is, do not edit) ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="kph-topbar">
+  <div class="kph-topbar-inner">
+    <span>Free Shipping on orders over ₱2,000</span>
+    <div class="kph-topbar-mid hide-mobile">
+      <span>100% Authentic Product</span>
+      <span>1 Year Warranty</span>
+      <span>Easy Return</span>
+    </div>
+    <span class="hide-mobile">Need Help? 0999 999 9999</span>
+  </div>
+</div>
+<header class="kph-header">
+  <div class="kph-header-inner">
+    <a class="kph-logo" href="#" aria-label="KameraPH home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 13h24l-2 22H10L8 13z" fill="#FE6903"/><path d="M14 13v-2a6 6 0 0 1 12 0v2" fill="none" stroke="#FE6903" stroke-width="3"/><circle cx="20" cy="24" r="6" fill="#fff"/><circle cx="20" cy="24" r="3" fill="#272A33"/></svg>
+      <span class="kph-logo-text"><span class="kph-wordmark">Kamera<b>PH</b></span><small>Capture. Create. Inspire</small></span>
+    </a>
+    <nav class="kph-nav" id="kph-nav" aria-label="Main"></nav>
+    <div class="kph-search" id="kph-search">
+      <form id="kph-search-form" role="search">
+        <input type="search" placeholder="Search cameras, lenses, accessories" aria-label="Search">
+        <button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      </form>
+    </div>
+    <div class="kph-icons">
+      <button class="icon-btn only-mobile" id="kph-search-toggle" type="button" aria-label="Open search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button class="icon-btn" id="kph-theme-toggle" type="button" aria-label="Switch between light and dark mode"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <a class="icon-btn" data-kph-link="account" href="#" aria-label="Account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+      <a class="icon-btn" data-kph-link="wishlist" href="#" aria-label="Wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><span class="dot" hidden></span></a>
+      <a class="icon-btn" data-kph-link="cart" href="#" aria-label="Cart"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span class="dot" hidden></span></a>
+    </div>
+  </div>
+</header>
+<!-- ===== END HEADER ===== -->
+
+<main id="main" class="container">
+  <p><a href="seller-orders.html">&larr; Back to my fulfillments</a></p>
+  <h2 class="section-title">Fulfillment</h2>
+  <p id="status" class="status-msg">Loading...</p>
+  <div id="msg" role="status"></div>
+  <div id="content" class="layout-side"></div>
+</main>
+
+<!-- ===== KAMERAPH FOOTER (copy as is, do not edit) ===== -->
+<footer class="kph-footer">
+  <div class="kph-footer-inner">
+    <div class="kph-logo">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 13h24l-2 22H10L8 13z" fill="#FE6903"/><path d="M14 13v-2a6 6 0 0 1 12 0v2" fill="none" stroke="#FE6903" stroke-width="3"/><circle cx="20" cy="24" r="6" fill="#fff"/><circle cx="20" cy="24" r="3" fill="#272A33"/></svg>
+      <span class="kph-logo-text"><span class="kph-wordmark">Kamera<b>PH</b></span><small>Capture. Create. Inspire</small></span>
+    </div>
+    <p class="kph-footer-note only-mobile">Your one-stop shop for professional gear.</p>
+    <p class="kph-footer-copy">© 2026 KameraPH. All rights reserved.</p>
+  </div>
+</footer>
+<!-- ===== END FOOTER ===== -->
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/kph-ui.js"></script>
+<script>
+  const id = new URLSearchParams(location.search).get("id");
+  const el = x => document.getElementById(x), e = escapeHtml;
+  const STEPS = ["To Pack", "Packed", "Handed to Courier", "Delivered"];
+  const FUNDS = {Held: "badge-warn", Disputed: "badge-bad", Released: "badge-ok"};
+  const FLOW = {
+    "To Pack": ["Packed", "Seller", "Mark as packed"],
+    "Packed": ["Handed to Courier", "Seller", "Hand over to courier"],
+    "Handed to Courier": ["Delivered", "Courier", "Mark as delivered (courier)"]
+  };
+  const TYPES = ["Packing Photo", "Packing Video", "Handover Receipt", "Other"];
+  const val = v => v ? e(v) : "-";
+  const short = v => v ? e(v.slice(0, 16)) : "-";
+  const days = s => Math.max(0, Math.ceil((new Date(s.replace(" ", "T")) - new Date()) / 864e5));
+  function say(text, cls) { el("msg").className = cls || ""; el("msg").textContent = text || ""; }
+
+  function render(f, quotes, evidence) {
+    const T = {}; f.history.forEach(h => { if (!T[h.Status]) T[h.Status] = h.ChangedAt; });
+    const idx = STEPS.indexOf(f.PackageStatus), flow = FLOW[f.PackageStatus];
+    const canConfirm = f.PackageStatus === "Delivered" && f.FundsStatus === "Held";
+    let action = '<p class="muted">No action available right now.</p>';
+    if (flow) action = `<button class="btn btn-block" data-act="status" data-to="${flow[0]}" data-role="${flow[1]}">${flow[2]}</button>`;
+    if (canConfirm) action = '<button class="btn btn-block" data-act="confirm">Confirm receipt (buyer)</button>';
+    const fundsNote = f.FundsStatus === "Held" ? (f.AutoReleaseAt ? "Auto-release in " + days(f.AutoReleaseAt) + " day(s) unless the buyer confirms" : "Held until the package is delivered")
+      : f.FundsStatus === "Released" ? "Released " + (f.ReleasedAt || "").slice(0, 16) : "On hold for a dispute";
+
+    const minFee = Math.min(...quotes.map(q => +q.QuotedFee)), minDays = Math.min(...quotes.map(q => +q.EstimatedDeliveryDays));
+    const quoteHtml = quotes.length ? '<div class="quotes">' + quotes.map(q => { const s = +q.IsSelected === 1, many = quotes.length > 1; return `
+      <div class="quote${s ? " sel" : ""}">
+        <div class="row spread"><strong>Courier ${e(q.CourierID)}</strong>${s ? '<span class="badge badge-ok">Selected</span>' : ""}</div>
+        <div class="fee">${e(formatPeso(q.QuotedFee))}</div>
+        <div class="muted">${e(q.EstimatedDeliveryDays)} day(s)</div>
+        <div class="row">${many && +q.QuotedFee === minFee ? '<span class="badge badge-orange">Cheapest</span>' : ""}${many && +q.EstimatedDeliveryDays === minDays ? '<span class="badge badge-orange">Fastest</span>' : ""}</div>
+        ${s ? "" : `<button class="btn btn-sm btn-outline" data-act="select" data-q="${e(q.QuoteID)}">Select</button>`}
+      </div>`; }).join("") + "</div>" : '<p class="empty">No quotes yet.</p>';
+
+    const items = f.items.length ? '<div class="table-wrap"><table class="table"><thead><tr><th>Order item</th><th>Quantity</th></tr></thead><tbody>' +
+      f.items.map(i => `<tr><td>${e(i.OrderItemID)}</td><td>${e(i.Quantity)}</td></tr>`).join("") + "</tbody></table></div>" : '<p class="empty">No items yet.</p>';
+    const ev = evidence.length ? evidence.map(x => `<div class="ev"><span><span class="badge badge-orange">${e(x.EvidenceType)}</span> ${e(x.FileURL)}</span><span class="muted">${short(x.UploadedAt)}</span></div>`).join("")
+      : '<p class="empty">No evidence yet. Add a packing photo.</p>';
+    const hist = '<ul class="timeline">' + f.history.map(h => `<li><strong>${e(h.Status)}</strong> <span class="muted">${short(h.ChangedAt)} · ${e(h.ChangedByRole)}</span>${h.Notes ? "<br>" + e(h.Notes) : ""}</li>`).join("") + "</ul>";
+
+    return `
+    <div class="stack">
+      <div class="card">
+        <div class="row spread"><h3>Order ${e(f.OrderID)} · Fulfillment #${e(f.FulfillmentID)}</h3><span class="badge ${FUNDS[f.FundsStatus] || ""}">Funds: ${e(f.FundsStatus)}</span></div>
+        <ol class="steps">${STEPS.map((s, i) => `<li class="${i <= idx ? "done" : ""}${i === idx ? " now" : ""}"><b>${e(s)}</b><small>${T[s] ? short(T[s]) : ""}</small></li>`).join("")}</ol>
+      </div>
+      <div><h2 class="section-title">Items</h2>${items}</div>
+      <div><h2 class="section-title">Courier quotes</h2>${quoteHtml}</div>
+      <div><h2 class="section-title">Packing evidence</h2><div class="card">${ev}
+        <form id="ev-form" class="form" style="margin-top:14px">
+          <div class="field"><label for="et">Type</label><select id="et" name="EvidenceType" required>${TYPES.map(t => `<option>${t}</option>`).join("")}</select></div>
+          <div class="field"><label for="eu">File link</label><input id="eu" name="FileURL" placeholder="https://... or /uploads/photo.jpg" required></div>
+          <button class="btn" type="submit">Add evidence</button>
+        </form></div></div>
+      <div><h2 class="section-title">History</h2><div class="card">${hist}</div></div>
+    </div>
+    <aside class="stack">
+      <div class="card"><h3>Next step</h3>${action}</div>
+      <div class="card"><h3>Payment</h3><p><span class="badge ${FUNDS[f.FundsStatus] || ""}">${e(f.FundsStatus)}</span></p><p class="muted">${e(fundsNote)}</p></div>
+      <div class="card sideinfo"><h3>Details</h3>
+        <p><span>Seller</span><span>${e(f.SellerID)}</span></p>
+        <p><span>Pickup address</span><span>${e(f.PickupAddressID)}</span></p>
+        <p><span>Ship by</span><span>${short(f.ShipByDate)}</span></p>
+        <p><span>Packed</span><span>${short(f.PackedAt)}</span></p>
+        <p><span>Handed over</span><span>${short(f.HandoverToCourierAt)}</span></p>
+        <p><span>Shipping fee</span><span>${e(formatPeso(f.ShippingFee))}</span></p>
+      </div>
+    </aside>`;
+  }
+
+  async function load() {
+    if (!id) { el("status").className = "alert alert-error"; el("status").textContent = "No fulfillment selected."; return; }
+    try {
+      const q = encodeURIComponent(id);
+      const [f, quotes, evidence] = await Promise.all([
+        apiGet("/fulfillments.php?id=" + q), apiGet("/quotes.php?fulfillment_id=" + q), apiGet("/evidence.php?fulfillment_id=" + q)]);
+      el("status").className = "status-msg"; el("status").textContent = "";
+      el("content").innerHTML = render(f, quotes, evidence);
+    } catch (err) {
+      el("status").className = "alert alert-error"; el("status").textContent = err.message;
+    }
+  }
+
+  document.addEventListener("click", async ev => {
+    const b = ev.target.closest("[data-act]");
+    if (!b) return;
+    b.disabled = true;
+    const q = encodeURIComponent(id);
+    try {
+      if (b.dataset.act === "status") await apiSend("PUT", "/fulfillments.php?id=" + q + "&action=status", {PackageStatus: b.dataset.to, ChangedByRole: b.dataset.role});
+      else if (b.dataset.act === "confirm") await apiSend("POST", "/fulfillments.php?id=" + q + "&action=confirm-receipt");
+      else if (b.dataset.act === "select") await apiSend("PUT", "/quotes.php?id=" + encodeURIComponent(b.dataset.q) + "&action=select", {});
+      await load(); say("Saved.", "alert alert-ok");
+    } catch (err) { say(err.message, "alert alert-error"); b.disabled = false; }
+  });
+
+  document.addEventListener("submit", async ev => {
+    if (ev.target.id !== "ev-form") return;
+    ev.preventDefault();
+    const body = Object.fromEntries(new FormData(ev.target)); body.FulfillmentID = Number(id);
+    try { await apiSend("POST", "/evidence.php", body); await load(); say("Evidence added.", "alert alert-ok"); }
+    catch (err) { say(err.message, "alert alert-error"); }
+  });
+
+  load();
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+/* Module 7 extra styles. Uses only the kit's color variables (kph.css is untouched). */
+.stats{display:grid;gap:12px;grid-template-columns:repeat(4,1fr);margin-bottom:16px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;text-align:left;font:inherit;color:var(--text);cursor:pointer}
+.stat:hover,.stat.active{border-color:var(--orange)}
+.stat b{display:block;font-size:26px;line-height:1.1}
+.stat span{font-size:13px;color:var(--muted)}
+.stat.late b{color:var(--bad)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.chip{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:6px 14px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.chip.active{background:var(--orange);border-color:var(--orange);color:#fff}
+.filters{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-bottom:16px}
+.filters .field{max-width:200px}
+.fcard{display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.fcard:hover{border-color:var(--orange);transform:translateY(-2px)}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.mini i{height:6px;border-radius:3px;background:var(--soft)}
+.mini i.on{background:var(--orange)}
+.due{font-size:13px;color:var(--muted)}
+.due.late{color:var(--bad);font-weight:600}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.steps li{position:relative;text-align:center;font-size:13px;padding-top:34px;color:var(--muted)}
+.steps li::before{content:"";position:absolute;top:8px;left:50%;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--soft);border:2px solid var(--border);z-index:1}
+.steps li::after{content:"";position:absolute;top:16px;left:-50%;width:100%;height:3px;background:var(--border)}
+.steps li:first-child::after{display:none}
+.steps li.done{color:var(--text)}
+.steps li.done::before{background:var(--orange);border-color:var(--orange)}
+.steps li.done::after{background:var(--orange)}
+.steps li.now::before{box-shadow:0 0 0 4px rgba(254,105,3,.25)}
+.steps b{display:block;font-weight:600}
+.steps small{color:var(--muted);font-size:11px}
+.quotes{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.quote{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:grid;gap:6px;align-content:start}
+.quote.sel{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}
+.quote .fee{font-size:20px;font-weight:700;color:var(--price)}
+.timeline{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid var(--border)}
+.timeline li{position:relative;padding:0 0 16px 14px}
+.timeline li::before{content:"";position:absolute;left:-26px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--orange)}
+.ev{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--border);word-break:break-all}
+.sideinfo p{display:flex;justify-content:space-between;gap:12px;margin:0 0 8px;font-size:14px}
+.sideinfo p span:first-child{color:var(--muted)}
+.empty{text-align:center;color:var(--muted);padding:20px}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}.steps small{display:none}.filters .field{max-width:none;flex:1}}

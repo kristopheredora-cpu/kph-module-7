@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My fulfillments | KameraPH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/kph.css">
+  <link rel="stylesheet" href="css/module.css">
+  <!-- keeps the light/dark choice without a flash -->
+  <script>try{var t=localStorage.getItem("kph-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<!-- ===== KAMERAPH HEADER (copy as is, do not edit) ===== -->
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="kph-topbar">
+  <div class="kph-topbar-inner">
+    <span>Free Shipping on orders over ₱2,000</span>
+    <div class="kph-topbar-mid hide-mobile">
+      <span>100% Authentic Product</span>
+      <span>1 Year Warranty</span>
+      <span>Easy Return</span>
+    </div>
+    <span class="hide-mobile">Need Help? 0999 999 9999</span>
+  </div>
+</div>
+<header class="kph-header">
+  <div class="kph-header-inner">
+    <a class="kph-logo" href="#" aria-label="KameraPH home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 13h24l-2 22H10L8 13z" fill="#FE6903"/><path d="M14 13v-2a6 6 0 0 1 12 0v2" fill="none" stroke="#FE6903" stroke-width="3"/><circle cx="20" cy="24" r="6" fill="#fff"/><circle cx="20" cy="24" r="3" fill="#272A33"/></svg>
+      <span class="kph-logo-text"><span class="kph-wordmark">Kamera<b>PH</b></span><small>Capture. Create. Inspire</small></span>
+    </a>
+    <nav class="kph-nav" id="kph-nav" aria-label="Main"></nav>
+    <div class="kph-search" id="kph-search">
+      <form id="kph-search-form" role="search">
+        <input type="search" placeholder="Search cameras, lenses, accessories" aria-label="Search">
+        <button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      </form>
+    </div>
+    <div class="kph-icons">
+      <button class="icon-btn only-mobile" id="kph-search-toggle" type="button" aria-label="Open search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button class="icon-btn" id="kph-theme-toggle" type="button" aria-label="Switch between light and dark mode"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <a class="icon-btn" data-kph-link="account" href="#" aria-label="Account"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+      <a class="icon-btn" data-kph-link="wishlist" href="#" aria-label="Wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.2l7.8-7.7 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><span class="dot" hidden></span></a>
+      <a class="icon-btn" data-kph-link="cart" href="#" aria-label="Cart"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><span class="dot" hidden></span></a>
+    </div>
+  </div>
+</header>
+<!-- ===== END HEADER ===== -->
+
+<main id="main" class="container">
+  <h2 class="section-title">My fulfillments</h2>
+  <form id="filters" class="filters">
+    <div class="field"><label for="seller">Seller ID (testing)</label><input id="seller" type="number" min="1" value="25" required></div>
+    <button class="btn" type="submit">Load</button>
+  </form>
+  <div id="stats" class="stats"></div>
+  <div id="chips" class="chips"></div>
+  <p id="status" class="status-msg">Loading...</p>
+  <div id="list" class="grid"></div>
+</main>
+
+<!-- ===== KAMERAPH FOOTER (copy as is, do not edit) ===== -->
+<footer class="kph-footer">
+  <div class="kph-footer-inner">
+    <div class="kph-logo">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 13h24l-2 22H10L8 13z" fill="#FE6903"/><path d="M14 13v-2a6 6 0 0 1 12 0v2" fill="none" stroke="#FE6903" stroke-width="3"/><circle cx="20" cy="24" r="6" fill="#fff"/><circle cx="20" cy="24" r="3" fill="#272A33"/></svg>
+      <span class="kph-logo-text"><span class="kph-wordmark">Kamera<b>PH</b></span><small>Capture. Create. Inspire</small></span>
+    </div>
+    <p class="kph-footer-note only-mobile">Your one-stop shop for professional gear.</p>
+    <p class="kph-footer-copy">© 2026 KameraPH. All rights reserved.</p>
+  </div>
+</footer>
+<!-- ===== END FOOTER ===== -->
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/kph-ui.js"></script>
+<script>
+  const el = x => document.getElementById(x), e = escapeHtml;
+  const STEPS = ["To Pack", "Packed", "Handed to Courier", "Delivered"];
+  const FUNDS = {Held: "badge-warn", Disputed: "badge-bad", Released: "badge-ok"};
+  let rows = [], cur = "";
+  const when = s => new Date(s.replace(" ", "T"));
+  const late = f => !f.HandoverToCourierAt && when(f.ShipByDate) < new Date();
+  const match = f => cur === "" || (cur === "late" ? late(f) : f.PackageStatus === cur);
+
+  function due(f) {
+    if (f.HandoverToCourierAt) return {t: "Handed over " + f.HandoverToCourierAt.slice(0, 10), c: ""};
+    const d = Math.ceil((when(f.ShipByDate) - new Date()) / 864e5);
+    return d < 0 ? {t: Math.abs(d) + " day(s) late", c: " late"} : {t: d === 0 ? "Due today" : "Due in " + d + " day(s)", c: ""};
+  }
+  const card = f => { const i = STEPS.indexOf(f.PackageStatus), d = due(f); return `
+    <article class="card fcard">
+      <div class="row spread"><h3>Order ${e(f.OrderID)}</h3><span class="badge ${FUNDS[f.FundsStatus] || ""}">${e(f.FundsStatus)}</span></div>
+      <div class="mini">${STEPS.map((s, k) => `<i class="${k <= i ? "on" : ""}"></i>`).join("")}</div>
+      <div><strong>${e(f.PackageStatus)}</strong><div class="due${d.c}">${e(d.t)}</div></div>
+      <p class="muted">Shipping ${e(formatPeso(f.ShippingFee))}</p>
+      <a class="btn btn-sm" href="fulfillment.html?id=${encodeURIComponent(f.FulfillmentID)}">Open</a>
+    </article>`; };
+
+  function draw() {
+    const n = k => rows.filter(f => k === "late" ? late(f) : f.PackageStatus === k).length;
+    const btn = (cls, k, inner) => `<button class="${cls}${cur === k ? " active" : ""}" data-f="${k}">${inner}</button>`;
+    el("stats").innerHTML = [["To Pack", "To pack"], ["late", "Late"], ["Handed to Courier", "With courier"], ["Delivered", "Delivered"]]
+      .map(([k, l]) => btn("stat" + (k === "late" ? " late" : ""), k, `<b>${n(k)}</b><span>${l}</span>`)).join("");
+    el("chips").innerHTML = [["", "All"], ["To Pack", "To Pack"], ["Packed", "Packed"], ["Handed to Courier", "Handed to Courier"], ["Delivered", "Delivered"], ["late", "Late"]]
+      .map(([k, l]) => btn("chip", k, l)).join("");
+    const list = rows.filter(match);
+    el("list").innerHTML = list.map(card).join("");
+    el("status").className = "status-msg";
+    el("status").textContent = list.length ? "" : "Nothing here yet.";
+  }
+
+  async function load() {
+    el("status").className = "status-msg"; el("status").textContent = "Loading...";
+    try {
+      rows = await apiGet("/fulfillments.php?seller_id=" + encodeURIComponent(el("seller").value));
+      draw();
+    } catch (err) {
+      rows = []; draw();
+      el("status").className = "alert alert-error"; el("status").textContent = err.message;
+    }
+  }
+
+  document.addEventListener("click", ev => {
+    const b = ev.target.closest("[data-f]");
+    if (b) { cur = b.dataset.f; draw(); }
+  });
+  el("filters").addEventListener("submit", ev => { ev.preventDefault(); load(); });
+  load();
+</script>
+</body>
+</html>

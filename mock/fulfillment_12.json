@@ -1,0 +1,43 @@
+{
+  "FulfillmentID": 12,
+  "OrderID": 9101,
+  "SellerID": 25,
+  "PickupAddressID": 5,
+  "PackageStatus": "Packed",
+  "ShipByDate": "2026-11-05 12:00:00",
+  "PackedAt": "2026-10-30 09:30:00",
+  "HandoverToCourierAt": null,
+  "ShippingFee": "200.00",
+  "FundsStatus": "Held",
+  "BuyerConfirmedAt": null,
+  "AutoReleaseAt": null,
+  "ReleasedAt": null,
+  "Notes": null,
+  "items": [
+    {
+      "FulfillmentItemID": 5,
+      "OrderItemID": 7001,
+      "Quantity": 1
+    }
+  ],
+  "history": [
+    {
+      "Status": "To Pack",
+      "ChangedAt": "2026-10-30 09:21:03",
+      "ChangedByRole": "System",
+      "Notes": "Fulfillment created"
+    },
+    {
+      "Status": "Packed",
+      "ChangedAt": "2026-10-30 09:30:00",
+      "ChangedByRole": "Seller",
+      "Notes": "Packed safely"
+    }
+  ],
+  "selected_quote": {
+    "QuoteID": 10,
+    "CourierID": 2,
+    "QuotedFee": "200.00",
+    "EstimatedDeliveryDays": 1
+  }
+}

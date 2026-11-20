@@ -1,0 +1,18 @@
+[
+  {
+    "FulfillmentID": 14,
+    "OrderID": 9103,
+    "SellerID": 25,
+    "PickupAddressID": 5,
+    "PackageStatus": "To Pack",
+    "ShipByDate": "2026-10-01 12:00:00",
+    "PackedAt": null,
+    "HandoverToCourierAt": null,
+    "ShippingFee": "0.00",
+    "FundsStatus": "Held",
+    "BuyerConfirmedAt": null,
+    "AutoReleaseAt": null,
+    "ReleasedAt": null,
+    "Notes": null
+  }
+]
