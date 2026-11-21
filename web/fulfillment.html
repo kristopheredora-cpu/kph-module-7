@@ -86,6 +86,11 @@
   const val = v => v ? e(v) : "-";
   const short = v => v ? e(v.slice(0, 16)) : "-";
   const days = s => Math.max(0, Math.ceil((new Date(s.replace(" ", "T")) - new Date()) / 864e5));
+  const CAMERA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+  // TODO: when Module 6 (order item title) and Module 3 (listing photo) give an endpoint,
+  // make this return {title, image} for an OrderItemID. Until then the pages show a placeholder.
+  const itemInfo = id => null;
+  const imgOrCamera = info => info && /^https?:\/\//.test(info.image || "") ? `<img src="${escapeHtml(info.image)}" alt="">` : CAMERA;
   function say(text, cls) { el("msg").className = cls || ""; el("msg").textContent = text || ""; }
 
   function render(f, quotes, evidence) {
@@ -108,8 +113,7 @@
         ${s ? "" : `<button class="btn btn-sm btn-outline" data-act="select" data-q="${e(q.QuoteID)}">Select</button>`}
       </div>`; }).join("") + "</div>" : '<p class="empty">No quotes yet.</p>';
 
-    const items = f.items.length ? '<div class="table-wrap"><table class="table"><thead><tr><th>Order item</th><th>Quantity</th></tr></thead><tbody>' +
-      f.items.map(i => `<tr><td>${e(i.OrderItemID)}</td><td>${e(i.Quantity)}</td></tr>`).join("") + "</tbody></table></div>" : '<p class="empty">No items yet.</p>';
+    const items = f.items.length ? '<div class="card">' + f.items.map(i => { const info = itemInfo(i.OrderItemID); return `<div class="item-row"><div class="thumb">${imgOrCamera(info)}</div><div style="flex:1"><strong>${e(info && info.title ? info.title : "Item #" + i.OrderItemID)}</strong><div class="muted">Order item ${e(i.OrderItemID)}</div></div><span class="badge">× ${e(i.Quantity)}</span></div>`; }).join("") + "</div>" : '<p class="empty">No items yet.</p>';
     const ev = evidence.length ? evidence.map(x => `<div class="ev"><span><span class="badge badge-orange">${e(x.EvidenceType)}</span> ${e(x.FileURL)}</span><span class="muted">${short(x.UploadedAt)}</span></div>`).join("")
       : '<p class="empty">No evidence yet. Add a packing photo.</p>';
     const hist = '<ul class="timeline">' + f.history.map(h => `<li><strong>${e(h.Status)}</strong> <span class="muted">${short(h.ChangedAt)} · ${e(h.ChangedByRole)}</span>${h.Notes ? "<br>" + e(h.Notes) : ""}</li>`).join("") + "</ul>";

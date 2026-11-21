@@ -81,6 +81,15 @@
   const STEPS = ["To Pack", "Packed", "Handed to Courier", "Delivered"];
   const FUNDS = {Held: "badge-warn", Disputed: "badge-bad", Released: "badge-ok"};
   let rows = [], cur = "";
+  const demo = window.KPH && KPH.demoMode === true;
+  if (!demo) el("filters").remove();   // no seller ID box outside demo mode
+  const sellerId = () => demo ? el("seller").value : (KPH.sellerId || 25);   // TODO: the real seller comes from the login
+  const CAMERA = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+  // TODO: when Module 6 (order item title) and Module 3 (listing photo) give an endpoint,
+  // make this return {title, image} for an OrderItemID. Until then the pages show a placeholder.
+  const itemInfo = id => null;
+  const imgOrCamera = info => info && /^https?:\/\//.test(info.image || "") ? `<img src="${escapeHtml(info.image)}" alt="">` : CAMERA;
+  
   const when = s => new Date(s.replace(" ", "T"));
   const late = f => !f.HandoverToCourierAt && when(f.ShipByDate) < new Date();
   const match = f => cur === "" || (cur === "late" ? late(f) : f.PackageStatus === cur);
@@ -90,11 +99,18 @@
     const d = Math.ceil((when(f.ShipByDate) - new Date()) / 864e5);
     return d < 0 ? {t: Math.abs(d) + " day(s) late", c: " late"} : {t: d === 0 ? "Due today" : "Due in " + d + " day(s)", c: ""};
   }
-  const card = f => { const i = STEPS.indexOf(f.PackageStatus), d = due(f); return `
+  const card = f => {
+    const i = STEPS.indexOf(f.PackageStatus), d = due(f), list = f.items || [], first = list[0], info = first ? itemInfo(first.OrderItemID) : null;
+    const title = info && info.title ? info.title : (first ? "Item #" + first.OrderItemID : "No items yet");
+    const more = list.length > 1 ? " +" + (list.length - 1) + " more" : "";
+    const pcs = list.reduce((n, x) => n + Number(x.Quantity), 0);
+    return `
     <article class="card fcard">
+      <div class="fc-img">${imgOrCamera(info)}</div>
       <div class="row spread"><h3>Order ${e(f.OrderID)}</h3><span class="badge ${FUNDS[f.FundsStatus] || ""}">${e(f.FundsStatus)}</span></div>
       <div class="mini">${STEPS.map((s, k) => `<i class="${k <= i ? "on" : ""}"></i>`).join("")}</div>
       <div><strong>${e(f.PackageStatus)}</strong><div class="due${d.c}">${e(d.t)}</div></div>
+      <p class="fc-items"><strong>${e(title)}</strong>${e(more)} · ${e(pcs)} pc(s)</p>
       <p class="muted">Shipping ${e(formatPeso(f.ShippingFee))}</p>
       <a class="btn btn-sm" href="fulfillment.html?id=${encodeURIComponent(f.FulfillmentID)}">Open</a>
     </article>`; };
@@ -115,7 +131,10 @@
   async function load() {
     el("status").className = "status-msg"; el("status").textContent = "Loading...";
     try {
-      rows = await apiGet("/fulfillments.php?seller_id=" + encodeURIComponent(el("seller").value));
+      rows = await apiGet("/fulfillments.php?seller_id=" + encodeURIComponent(sellerId()));
+      await Promise.all(rows.map(async f => {
+        try { f.items = await apiGet("/items.php?fulfillment_id=" + encodeURIComponent(f.FulfillmentID)); } catch (err) { f.items = []; }
+      }));
       draw();
     } catch (err) {
       rows = []; draw();
@@ -127,7 +146,7 @@
     const b = ev.target.closest("[data-f]");
     if (b) { cur = b.dataset.f; draw(); }
   });
-  el("filters").addEventListener("submit", ev => { ev.preventDefault(); load(); });
+  if (demo) el("filters").addEventListener("submit", ev => { ev.preventDefault(); load(); });
   load();
 </script>
 </body>
