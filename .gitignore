@@ -1,0 +1,14 @@
+# Real settings with the database password: never push
+config/config.php
+**/config/config.php
+.env
+*.env
+
+# Test and demo files
+test_backend.php
+web/demo-tools.html
+
+# Editor and logs
+.vscode/
+*.log
+**/node_modules/

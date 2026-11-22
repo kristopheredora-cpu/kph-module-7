@@ -10,7 +10,8 @@ const KPH = {
 
   // 2. For testing only: the user ID sent with every request.
   //    The login token will replace this later.
-  testUserId: "1",
+  testUserId: "10014",
+  sellerId: 7,
 
   // 3. The web address of every module's pages (its "web" folder, no slash at the end).
   //    Use localhost while testing and the real address after uploading.
