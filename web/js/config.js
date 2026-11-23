@@ -6,7 +6,7 @@
 
 const KPH = {
   // 1. Your own module's API address (no slash at the end)
-  api: "http://localhost/kph_fulfillment_logistics/api",
+  api: location.origin + location.pathname.replace(/\/web\/.*$/, "") + "/api",
 
   // 2. For testing only: the user ID sent with every request.
   //    The login token will replace this later.
