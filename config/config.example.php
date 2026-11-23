@@ -17,7 +17,7 @@ return [
     // Secret for cron/auto_release.php?key=... Leave empty here. Set it only on the host.
     "cron_key" => "",
 
-    "modules" => [
+   "modules" => [
         "accounts"    => "http://localhost/kph_user_account_identity/api",
         "sellers"     => "http://localhost/kph_seller_verification/api",
         "catalog"     => "http://localhost/kph_catalog_specification/api",
@@ -25,7 +25,7 @@ return [
         "shopping"    => "http://localhost/kph_shopping_promotions/api",
         "orders"      => "http://localhost/kph_order_payment/api",
         "fulfillment" => "http://localhost/kph_fulfillment_logistics/api",
-        "shipping"    => "http://localhost/kph_shipping_delivery/api",
+        "shipping"    => "https://kph-shipping-api-g5djcta7d9d4fxa9.eastasia-01.azurewebsites.net/api",
         "support"     => "http://localhost/kph_post_purchase_support/api",
         "admin"       => "http://localhost/kph_administration_analytics/api",
     ],

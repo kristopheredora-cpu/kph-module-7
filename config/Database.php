@@ -7,7 +7,8 @@ class Database {
 
     public static function connect(): PDO {
         if (self::$pdo === null) {
-            $c = require __DIR__ . '/config.php';
+            require_once __DIR__ . '/loader.php';
+            $c = kph_config();
             $port = $c['port'] ?? 3306;
             $charset = $c['charset'] ?? 'utf8mb4';
             $dsn = "mysql:host={$c['host']};port={$port};dbname={$c['dbname']};charset={$charset}";

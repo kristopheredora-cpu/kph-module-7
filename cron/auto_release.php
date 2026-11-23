@@ -13,7 +13,8 @@ $isCli = (PHP_SAPI === 'cli');
 
 if (!$isCli) {
     header('Content-Type: application/json; charset=utf-8');
-    $config = require __DIR__ . '/../config/config.php';
+    require_once __DIR__ . '/../config/loader.php';
+    $config = kph_config();
     $secret = (string)($config['cron_key'] ?? '');
     $given = $_GET['key'] ?? '';
     if ($secret === '' || !is_string($given) || !hash_equals($secret, $given)) {

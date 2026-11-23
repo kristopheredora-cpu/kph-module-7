@@ -11,7 +11,8 @@ class ShippingNotifier {
                 return;
             }
 
-            $config = require __DIR__ . '/../config/config.php';
+            require_once __DIR__ . '/../config/loader.php';
+            $config = kph_config();
             $baseUrl = rtrim($config['modules']['shipping'] ?? '', '/');
             if ($baseUrl === '') {
                 return;
