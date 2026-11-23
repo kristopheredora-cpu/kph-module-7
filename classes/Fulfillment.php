@@ -228,6 +228,16 @@ class Fulfillment {
                 );
             }
 
+            if ($newStatus === 'Handed to Courier') {
+                $checkQuote = $this->pdo->prepare(
+                    "SELECT QuoteID FROM shipping_quote WHERE FulfillmentID = ? AND IsSelected = 1 LIMIT 1"
+                );
+                $checkQuote->execute([$id]);
+                if (!$checkQuote->fetch()) {
+                    throw new InvalidArgumentException("Please select a courier quote before handing over to courier.");
+                }
+            }
+
             $sql = "UPDATE fulfillment SET PackageStatus = ?";
             if ($newStatus === 'Packed') {
                 $sql .= ", PackedAt = CURRENT_TIMESTAMP";
@@ -241,8 +251,6 @@ class Fulfillment {
 
             $this->pdo->prepare($sql)->execute([$newStatus, $id]);
             $this->addHistory($id, $newStatus, $role, $notes);
-
-            
         });
 
         if ($newStatus === 'Handed to Courier') {

@@ -96,9 +96,15 @@
   function render(f, quotes, evidence) {
     const T = {}; f.history.forEach(h => { if (!T[h.Status]) T[h.Status] = h.ChangedAt; });
     const idx = STEPS.indexOf(f.PackageStatus), flow = FLOW[f.PackageStatus];
+    const hasSelectedQuote = quotes.some(q => +q.IsSelected === 1);
+    const needsQuote = f.PackageStatus === "Packed" && !hasSelectedQuote;
+    const canSelectQuote = f.PackageStatus === "To Pack" || f.PackageStatus === "Packed";
     const canConfirm = f.PackageStatus === "Delivered" && f.FundsStatus === "Held";
     let action = '<p class="muted">No action available right now.</p>';
-    if (flow) action = `<button class="btn btn-block" data-act="status" data-to="${flow[0]}" data-role="${flow[1]}">${flow[2]}</button>`;
+    if (flow) {
+      action = `<button class="btn btn-block" data-act="status" data-to="${flow[0]}" data-role="${flow[1]}"${needsQuote ? ' disabled title="Select a courier quote before handing over"' : ""}>${flow[2]}</button>`;
+      if (needsQuote) action += '<p class="muted" style="margin-top:8px">Select a courier quote below before handing over to courier.</p>';
+    }
     if (canConfirm) action = '<button class="btn btn-block" data-act="confirm">Confirm receipt (buyer)</button>';
     const fundsNote = f.FundsStatus === "Held" ? (f.AutoReleaseAt ? "Auto-release in " + days(f.AutoReleaseAt) + " day(s) unless the buyer confirms" : "Held until the package is delivered")
       : f.FundsStatus === "Released" ? "Released " + (f.ReleasedAt || "").slice(0, 16) : "On hold for a dispute";
@@ -110,7 +116,7 @@
         <div class="fee">${e(formatPeso(q.QuotedFee))}</div>
         <div class="muted">${e(q.EstimatedDeliveryDays)} day(s)</div>
         <div class="row">${many && +q.QuotedFee === minFee ? '<span class="badge badge-orange">Cheapest</span>' : ""}${many && +q.EstimatedDeliveryDays === minDays ? '<span class="badge badge-orange">Fastest</span>' : ""}</div>
-        ${s ? "" : `<button class="btn btn-sm btn-outline" data-act="select" data-q="${e(q.QuoteID)}">Select</button>`}
+        ${s || !canSelectQuote ? "" : `<button class="btn btn-sm btn-outline" data-act="select" data-q="${e(q.QuoteID)}">Select</button>`}
       </div>`; }).join("") + "</div>" : '<p class="empty">No quotes yet.</p>';
 
     const items = f.items.length ? '<div class="card">' + f.items.map(i => { const info = itemInfo(i.OrderItemID); return `<div class="item-row"><div class="thumb">${imgOrCamera(info)}</div><div style="flex:1"><strong>${e(info && info.title ? info.title : "Item #" + i.OrderItemID)}</strong><div class="muted">Order item ${e(i.OrderItemID)}</div></div><span class="badge">× ${e(i.Quantity)}</span></div>`; }).join("") + "</div>" : '<p class="empty">No items yet.</p>';
