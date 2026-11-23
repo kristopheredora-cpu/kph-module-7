@@ -28,6 +28,12 @@ try {
     respond(400, ["error" => $e->getMessage()]);
 } catch (OutOfBoundsException $e) {
     respond(404, ["error" => $e->getMessage()]);
+} catch (PDOException $e) {
+    if ((int)($e->errorInfo[1] ?? 0) === 1452) {
+        respond(400, ["error" => "Referenced record does not exist."]);
+    }
+    error_log($e->getMessage());
+    respond(500, ["error" => "Server error"]);
 } catch (Throwable $e) {
     error_log($e->getMessage());
     respond(500, ["error" => "Server error"]);

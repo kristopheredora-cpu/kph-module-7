@@ -1,19 +1,27 @@
-// ==========================================================
-// KameraPH UI Kit  |  api.js
-// Helpers for calling your API. Needs config.js loaded first.
-//   apiGet("/promotions.php")                       -> read
-//   apiSend("POST", "/promotions.php", {...})       -> create
-//   apiSend("PUT",  "/promotions.php?id=1", {...})  -> change
-// If the API answers with an error, these throw an Error whose
-// message is the API's own message, so your page can show it.
-// ==========================================================
+(function () {
+  try {
+    const params = new URLSearchParams(location.search);
+    const urlToken = params.get("token");
+    if (urlToken) {
+      localStorage.setItem("kph-auth-token", urlToken);
+    }
+  } catch (e) { /* ignore storage errors */ }
+})();
 
 async function request(method, path, body) {
   let res;
+  const headers = { "Content-Type": "application/json" };
+  try {
+    const token = localStorage.getItem("kph-auth-token");
+    if (token) headers["Authorization"] = "Bearer " + token;
+  } catch (e) { /* ignore storage errors */ }
+  if (typeof KPH !== "undefined" && KPH.testUserId) {
+    headers["X-Test-User-Id"] = KPH.testUserId;
+  }
   try {
     res = await fetch(KPH.api + path, {
       method: method,
-      headers: { "Content-Type": "application/json", "X-Test-User-Id": KPH.testUserId },
+      headers: headers,
       body: body === undefined ? undefined : JSON.stringify(body)
     });
   } catch (e) {
@@ -30,15 +38,12 @@ async function request(method, path, body) {
 function apiGet(path) { return request("GET", path); }
 function apiSend(method, path, body) { return request(method, path, body); }
 
-// Makes text from the database safe to put inside HTML.
-// ALWAYS use it on text that comes from the API.
 function escapeHtml(text) {
   const d = document.createElement("div");
   d.textContent = text == null ? "" : String(text);
   return d.innerHTML;
 }
 
-// 18500 -> "₱18,500"     18500.5 -> "₱18,500.50"
 function formatPeso(amount) {
   const n = Number(amount);
   if (Number.isNaN(n)) return "";
